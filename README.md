@@ -2,7 +2,7 @@
 
 #mongodb
 database: mongo-octus
-colelction: octus
+collection: octus
 
 #build command
 mvn clean install

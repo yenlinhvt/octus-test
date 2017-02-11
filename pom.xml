@@ -1,0 +1,159 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.octus.common</groupId>
+  <artifactId>OctusTest</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>OctusTest Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <java-version>1.7</java-version>
+    <springframework.version>4.3.1.RELEASE</springframework.version>
+    <jackson.version>2.7.5</jackson.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${springframework.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- mongodb java driver -->
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+      <version>2.11.0</version>
+    </dependency>
+
+    <!-- Spring data mongodb -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-mongodb</artifactId>
+      <version>1.10.0.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>de.flapdoodle.embed</groupId>
+      <artifactId>de.flapdoodle.embed.mongo</artifactId>
+      <version>1.50.2</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            <version>1.2.1.RELEASE</version>
+        </dependency>
+ 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>1.2.1.RELEASE</version>
+        </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>OctusTest</finalName>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.2</version>
+          <configuration>
+            <path>/octusrest</path>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>2.6</version>
+          <configuration>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>com.github.joelittlejohn.embedmongo</groupId>
+          <artifactId>embedmongo-maven-plugin</artifactId>
+          <version>0.3.4</version>
+          <executions>
+            <execution>
+              <id>start</id>
+              <goals>
+                <goal>start</goal>
+              </goals>
+              <configuration>
+                <!-- optional, default 27017 -->
+
+                <randomPort>true</randomPort>
+                <!-- optional, default is false, if true allocates a random 
+                  port and overrides embedmongo.port -->
+
+                <version>2.0.4</version>
+                <!-- optional, default 2.2.1 -->
+
+                <databaseDirectory>/tmp/mongo-octus/</databaseDirectory>
+                <!-- optional, default is a new dir in java.io.tmpdir -->
+
+                <logging>file</logging>
+                <!-- optional (file|console|none), default console -->
+
+                <logFile>${project.build.directory}/myfile.log</logFile>
+                <!-- optional, can be used when logging=file, default is 
+                  ./embedmongo.log -->
+
+                <logFileEncoding>utf-8</logFileEncoding>
+                <!-- optional, can be used when logging=file, default is 
+                  utf-8 -->
+
+                <bindIp>127.0.0.1</bindIp>
+                <!-- optional, default is to listen on all interfaces -->
+
+                <downloadPath>http://internal-mongo-repo/</downloadPath>
+                <!-- optional, default is http://fastdl.mongodb.org/ -->
+
+                <storageEngine>wiredTiger</storageEngine>
+                <!--optional, one of wiredTiger or mmapv1 (default is mmapv1) -->
+
+                <skip>false</skip>
+                <!-- optional, skips this plugin entirely, use on the command 
+                  line like -Dembedmongo.skip -->
+
+              </configuration>
+            </execution>
+            <execution>
+              <id>stop</id>
+              <goals>
+                <goal>stop</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
