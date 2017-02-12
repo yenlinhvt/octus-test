@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.stereotype.Repository;
 import com.octus.common.model.Octus;
 
@@ -45,6 +46,11 @@ public class OctusRepository {
 
 	public Octus findById(String id) {
 		return mongoTemplate.findById(id, Octus.class);
+	}
+
+	public Octus findByString(String key) {
+		BasicQuery query = new BasicQuery("{ test : '" + key + "' }");
+		return mongoTemplate.findOne(query, Octus.class);
 	}
 
 	public void deleteAll() {
