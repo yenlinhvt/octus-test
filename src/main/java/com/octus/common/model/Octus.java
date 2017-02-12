@@ -14,6 +14,10 @@ public class Octus {
 	public Octus() {
 	}
 
+	public Octus(String test) {
+		this.test = test;
+	}
+
 	public Octus(String id, String test) {
 		super();
 		this.id = id;

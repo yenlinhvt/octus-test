@@ -51,26 +51,61 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.12</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest-core</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${springframework.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>de.flapdoodle.embed</groupId>
-      <artifactId>de.flapdoodle.embed.mongo</artifactId>
-      <version>1.50.2</version>
-      <scope>runtime</scope>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <version>1.3</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-            <version>1.2.1.RELEASE</version>
-        </dependency>
- 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <version>1.2.1.RELEASE</version>
-        </dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>1.10.19</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest-core</artifactId>
+        </exclusion>
+      </exclusions>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path-assert</artifactId>
+      <version>2.2.0</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.0</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -94,64 +129,6 @@
           <configuration>
             <failOnMissingWebXml>false</failOnMissingWebXml>
           </configuration>
-        </plugin>
-
-        <plugin>
-          <groupId>com.github.joelittlejohn.embedmongo</groupId>
-          <artifactId>embedmongo-maven-plugin</artifactId>
-          <version>0.3.4</version>
-          <executions>
-            <execution>
-              <id>start</id>
-              <goals>
-                <goal>start</goal>
-              </goals>
-              <configuration>
-                <!-- optional, default 27017 -->
-
-                <randomPort>true</randomPort>
-                <!-- optional, default is false, if true allocates a random 
-                  port and overrides embedmongo.port -->
-
-                <version>2.0.4</version>
-                <!-- optional, default 2.2.1 -->
-
-                <databaseDirectory>/tmp/mongo-octus/</databaseDirectory>
-                <!-- optional, default is a new dir in java.io.tmpdir -->
-
-                <logging>file</logging>
-                <!-- optional (file|console|none), default console -->
-
-                <logFile>${project.build.directory}/myfile.log</logFile>
-                <!-- optional, can be used when logging=file, default is 
-                  ./embedmongo.log -->
-
-                <logFileEncoding>utf-8</logFileEncoding>
-                <!-- optional, can be used when logging=file, default is 
-                  utf-8 -->
-
-                <bindIp>127.0.0.1</bindIp>
-                <!-- optional, default is to listen on all interfaces -->
-
-                <downloadPath>http://internal-mongo-repo/</downloadPath>
-                <!-- optional, default is http://fastdl.mongodb.org/ -->
-
-                <storageEngine>wiredTiger</storageEngine>
-                <!--optional, one of wiredTiger or mmapv1 (default is mmapv1) -->
-
-                <skip>false</skip>
-                <!-- optional, skips this plugin entirely, use on the command 
-                  line like -Dembedmongo.skip -->
-
-              </configuration>
-            </execution>
-            <execution>
-              <id>stop</id>
-              <goals>
-                <goal>stop</goal>
-              </goals>
-            </execution>
-          </executions>
         </plugin>
       </plugins>
     </pluginManagement>

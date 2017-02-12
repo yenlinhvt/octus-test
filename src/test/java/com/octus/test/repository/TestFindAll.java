@@ -1,4 +1,4 @@
-package com.octus.test;
+package com.octus.test.repository;
 
 import static org.junit.Assert.*;
 
@@ -8,19 +8,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-
-import com.octus.common.config.SpringMongoConfig;
+import com.octus.common.config.AppConfig;
 import com.octus.common.model.Octus;
 import com.octus.common.repository.OctusRepository;
 
-@WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringMongoConfig.class)
-@IntegrationTest
+@WebAppConfiguration
+@ContextConfiguration(classes = AppConfig.class)
 public class TestFindAll {
 	@Autowired
 	private OctusRepository octusRepository;

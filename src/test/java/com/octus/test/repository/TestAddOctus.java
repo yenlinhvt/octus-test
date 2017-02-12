@@ -1,22 +1,20 @@
-package com.octus.test;
+package com.octus.test.repository;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.octus.common.config.SpringMongoConfig;
+import com.octus.common.config.AppConfig;
 import com.octus.common.model.Octus;
 import com.octus.common.repository.OctusRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@SpringApplicationConfiguration(classes = SpringMongoConfig.class)
-@IntegrationTest
+@ContextConfiguration(classes = AppConfig.class)
 public class TestAddOctus {
 	@Autowired
 	private OctusRepository octusRepository;
@@ -29,7 +27,7 @@ public class TestAddOctus {
 
 		Octus dboctus = octusRepository.findByString("Testing String");
 
-		assertEquals(dboctus, octus);
+		assertEquals(dboctus.getTest(), octus.getTest());
 	}
 
 }

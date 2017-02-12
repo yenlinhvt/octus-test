@@ -28,7 +28,7 @@ public class OctusRestController {
 
 		octusService.create(octus);
 
-		return new ResponseEntity<Octus>(octus, HttpStatus.OK);
+		return new ResponseEntity<Octus>(octus, HttpStatus.CREATED);
 	}
 
 	@GetMapping("/octus")

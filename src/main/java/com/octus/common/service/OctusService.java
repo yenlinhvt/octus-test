@@ -40,4 +40,8 @@ public class OctusService {
 	public String delete(String id) {
 		return octusRepository.deleteOctus(id);
 	}
+
+	public Octus findByString(String test) {
+		return octusRepository.findByString(test);
+	}
 }
