@@ -1,16 +1,16 @@
 # octus-test
 
-#mongodb
+** mongodb **
 database: mongo-octus
 collection: octus
 
-#build command
+** build command **
 mvn clean install
 
-#tomcat start
+** tomcat start **
 mvn tomcat:run
 
-#tomcat stop
+** tomcat stop **
 mvn tomcat:shutdown
 
 #GET - list all strings
